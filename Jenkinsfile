@@ -1,9 +1,13 @@
 pipeline{
-    agent any
+    agent none
     stages{
         stage("Build"){
-            steps{
-                echo "Hello World"
+            agent any
+            options {
+                skipDefaultCheckout()
+            }
+            steps {
+                echo 'Hello World'
             }
         }
     }
