@@ -1,13 +1,20 @@
 pipeline{
     agent any
     stages{
-        stage("Build"){
-            agent any
-            options {
-                skipDefaultCheckout()
+        stage("Build Master"){
+            when {
+                branch 'master'
             }
             steps {
-                echo 'Hello World'
+                echo 'Building Master'
+            }
+        }
+        stage("Build Dev"){
+            when {
+                branch 'dev'
+            }
+            steps {
+                echo 'Building Dev'
             }
         }
     }
