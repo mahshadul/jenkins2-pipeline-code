@@ -20,18 +20,35 @@
 //    }
 //}
 
-pipeline{
-    agent any
-    stages{
-        stage("Build"){
-            when {
-                tag "2.0"
-            }
-            steps {
-                echo 'Building based on tag'
-            }
-        }
+// Declarative pipeline
+//pipeline{
+//    agent any
+//    stages{
+//        stage("Build"){
+//            when {
+//                tag "2.0"
+//            }
+//            steps {
+//                echo 'Building based on tag'
+//            }
+//        }
+//
+//    }
+//}
 
+
+//Scripted pipeline
+
+node {
+    if(env.BRANCH_NAME == 'master'){
+        stage('Build Master'){
+            echo 'Building master'
+        }
     }
-}
+    if(env.BRANCH_NAME == 'dev'){
+        stage('Build Dev'){
+            echo 'Building dev'
+        }
+    }
+} 
 
